@@ -1,0 +1,20 @@
+include:
+
+#include <pthread.h>
+
+typedef int (*atomic_add_t)(volatile int * x, int a);
+typedef int (*atomic_cas_t)(volatile int * x, int o, int n);
+typedef int (*nanosleep_t)(const struct timespec *req, struct timespec *rem);
+typedef int (*sched_yield_t)();
+
+struct AtomicFunctions {
+   atomic_add_t add;
+   atomic_cas_t cas;
+   nanosleep_t nanosleep;
+   sched_yield_t sched_yield;
+};
+
+functions:
+
+void atomicsGetTable(AtomicFunctions & out) -1
+
